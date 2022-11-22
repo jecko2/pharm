@@ -1,1 +1,1 @@
-web: gunicorn cfe.wsgi --log-file -
+web: gunicorn cfe.wsgi:application --log-file -

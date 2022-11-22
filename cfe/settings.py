@@ -1,26 +1,27 @@
-
+import environ
 import json
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
+import django_heroku
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+import environ
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-with open(BASE_DIR / "secure" / "secret.json", "r") as file:
-    file = json.loads(file.read())
-
-
-def get_secrets(setting):
-    try:
-        return file[setting]
-    except:
-        raise ImproperlyConfigured
     
     
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_secrets("SECRET_KEY")
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -144,8 +145,8 @@ AUTH_USER_MODEL = "account.CustomUser"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
-DEFAULT_CONTACT_EMAIL = get_secrets("DEFAULT_CONTACT_EMAIL")
-DEFAULT_RECIPIENT_EMAIL = get_secrets("DEFAULT_RECIPIENT_EMAIL")
+DEFAULT_CONTACT_EMAIL = env("DEFAULT_CONTACT_EMAIL")
+DEFAULT_RECIPIENT_EMAIL = env("DEFAULT_RECIPIENT_EMAIL")
 
 
 
@@ -153,4 +154,8 @@ EMAIL_HOST = "smtp.sendgrid.net"
 EMAIL_PORT = 587 
 EMAIL_USE_TLS = True 
 EMAIL_HOST_USER = "apikey"
-EMAIL_HOST_PASSWORD = get_secrets("PHARM_SENDGRID_API_KEY")
+EMAIL_HOST_PASSWORD = env("PHARM_SENDGRID_API_KEY")
+
+
+
+django_heroku.settings(locals())
