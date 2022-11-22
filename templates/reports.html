@@ -1,0 +1,122 @@
+{% extends parent_template|default:"base.html" %}
+
+<!-- load static -->
+
+{% load static %}
+
+<!-- load title -->
+
+{% block title %} {{ block.super }} {% endblock title %}
+
+<!-- load css -->
+
+{% block css %} {% endblock css %}
+
+<!--  -->
+
+<!-- load body -->
+
+{% block content %}
+<!-- check path -->
+
+{% if request.resolver_match.view_name == "core:list_research_lab_reports" %}
+<div class="uk-section">
+  <div class="uk-container uk-container-small">
+    <h2 class="uk-h1 uk-text-center">
+      Latest Lab Reports and Tested Research Papers
+    </h2>
+    <p class="uk-text-center uk-text-lead">
+      Find quick answers to frequent pre-sale questions asked by customers
+    </p>
+    <ul class="uk-margin-medium-top" data-uk-accordion="multiple: true">
+      {% if reports %}
+      <!--  -->
+      {% for report in reports %}
+      <li>
+        <a class="uk-accordion-title uk-box-shadow-hover-small" href="#"
+          >{{report.unit.name}}-{{report.title}} Report</a
+        >
+        <div class="article-content uk-accordion-content link-primary">
+          <p>
+            {{report.sumary}}
+          </p>
+          <h4>Paper Infomation</h4>
+
+          <ul>
+            <li>
+              Date Posted:
+              <strong>{{report.pub_date|date:"M, d, Y H:m:s"}}</strong>
+            </li>
+            <li>Paper Type: <strong>{{report.get_type_display}}</strong></li>
+            <li>Paper Title: <strong>{{report.title}}</strong></li>
+            <li><a href="{{report.reports.url}}">Download Paper</a>.</li>
+          </ul>
+          <h4>Contacting support</h4>
+          <p>
+            For any inquery don't hesistate
+          </p>
+        </div>
+      </li>
+      {% endfor %} {% else %}
+      <a class="uk-accordion-title uk-box-shadow-hover-small" href="#"
+        >No Reports for download yet. Will update soon.</a
+      >
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endif %}
+<!-- check second apath -->
+{% if request.resolver_match.view_name == "core:list_examination_papers" %}
+<!-- starta loopins -->
+
+<div class="uk-section">
+  <div class="uk-container uk-container-small">
+    <h2 class="uk-h1 uk-text-center">
+      Latest Examination Papers for Your Exam Preps
+    </h2>
+    <p class="uk-text-center uk-text-lead">
+      Find a collection of all kinds of exam papers on the fly.
+    </p>
+    <ul class="uk-margin-medium-top" data-uk-accordion="multiple: true">
+      {% if papers %}
+      <!--  -->
+      {% for paper in papers %}
+      <li>
+        <a class="uk-accordion-title uk-box-shadow-hover-small" href="#"
+          >{{paper.unit.name}}-{{report.title}} Exam</a
+        >
+        <div class="article-content uk-accordion-content link-primary">
+          <p>
+            {{paper.sumary}}
+          </p>
+          <h4>Paper Infomation</h4>
+
+          <ul>
+            <li>
+              Date Posted:
+              <strong>{{paper.pub_date|date:"M, d, Y H:m:s"}}</strong>
+            </li>
+            <li>Paper Title: <strong>{{paper.title}}</strong></li>
+            <li><a href="{{paper.reports.url}}">Download Paper</a>.</li>
+          </ul>
+          <h4>Contacting support</h4>
+          <p>
+            For any inquery don't hesistate
+          </p>
+        </div>
+      </li>
+      {% endfor %} {% else %}
+      <a class="uk-accordion-title uk-box-shadow-hover-small" href="#"
+        >No Exam paper for download yet. Will update soon.</a
+      >
+      {% endif %}
+    </ul>
+  </div>
+</div>
+
+{% endif %} {% endblock content %}
+
+<!-- load js -->
+
+{% block js %} {% endblock js %}

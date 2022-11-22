@@ -1,0 +1,73 @@
+{% extends parent_template|default:"base.html" %}
+
+<!-- load static -->
+
+{% load static %}
+
+<!-- load title -->
+
+{% block title %} {{ block.super }} {% endblock title %}
+
+<!-- load css -->
+
+{% block css %} {% endblock css %}
+
+<!-- load body -->
+
+{% block content %}
+
+<div class="uk-section">
+  <div class="uk-container uk-container-xsmall">
+    <h1 class="uk-article-title uk-text-center">
+      Academic Notes and Reference
+    </h1>
+    <!-- content -->
+
+    {% if academics %}
+
+    <!-- looa -->
+    {% for academic in academics %}
+    <div
+      class="uk-card uk-card-default uk-box-shadow-small uk-box-shadow-hover-medium card-post uk-inline border-radius-medium border-xlight uk-width-1-1 uk-margin"
+    >
+      <a class="uk-position-cover" href="{{academic.get_absolute_url}}"></a>
+      <div class="uk-card-header">
+        <div class="uk-grid-small uk-flex-middle" data-uk-grid>
+          <div class="uk-width-auto uk-first-column">
+            <img
+              class="uk-border-circle avatar"
+              src="{% static 'img/avatar-alex.png' %}"
+              alt="Alex Koch"
+            />
+          </div>
+          <div class="uk-width-expand">
+            <h3 class="uk-card-title uk-margin-remove-bottom">
+              {{academic.name}}
+            </h3>
+            <p class="uk-text-meta uk-margin-remove-top">
+              <time datetime="2017-05-25T00:00:00+00:00"
+                >{{academic.pub_date|date:"M d, Y"}}</time
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="uk-card-body">
+        <p>{{academic.descr}}</p>
+      </div>
+      <div class="uk-card-footer">
+        <span class="uk-button uk-button-text">Read more →</span>
+      </div>
+    </div>
+    <!--  -->
+    {% endfor %}
+    <!--  -->
+    {% endif %}
+  </div>
+</div>
+
+{% endblock content %}
+
+<!-- load js -->
+
+{% block js %} {% endblock js %}

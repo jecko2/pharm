@@ -1,0 +1,73 @@
+{% extends parent_template|default:"base.html" %}
+
+<!-- load static -->
+
+{% load static %}
+
+<!-- load title -->
+
+{% block title %} {{ block.super }} {% endblock title %}
+
+<!-- load css -->
+
+{% block css %} {% endblock css %}
+
+<!--  -->
+
+<!-- load body -->
+
+{% block content %}
+
+<div class="uk-section">
+  <div class="uk-container">
+    <div class="uk-grid-large" data-uk-grid>
+      <div class="sidebar-fixed-width uk-visible@m">
+        <!-- sidebar -->
+          <div class="sidebar-docs uk-position-fixed uk-margin-top">
+          <h5>{{unittopic.unit.name}} Topics</h5>
+          <ul class="uk-nav uk-nav-default doc-nav">
+            {% if unittopics %}
+            <!-- loop -->
+            {% for topic in unittopics %}
+            <li {% if request.resolver_match.view_name == "core:topic_detail_view" and request.GET == topic.slug %} class="uk-active" {% endif %}>
+                <a href="{{topic.get_absolute_url}}">{{topic.title}}</a>
+            </li>
+            {% endfor %} {% endif %}
+          </ul>
+        </div>
+        
+         
+      </div>
+
+      <!-- main content -->
+      <div class="uk-width-1-1 uk-width-expand@m">
+        <article class="uk-article">
+          {% if request.resolver_match.view_name == "core:content_detail_view" %}
+            {% include "sub/unit.html" %}
+          {% endif %}
+
+          {% if request.resolver_match.view_name == "core:topic_detail_view" %}
+            {% include "sub/topic.html" %}
+          {% endif %}
+
+
+          <div class="uk-margin-large-top">
+            <h3>Next Lessons</h3>
+            <!-- <ul class="uk-list link-secondary">
+                <li><a href="doc.html">Creating a changelog</a></li>
+                <li><a href="doc.html">Contact form</a></li>
+                <li><a href="doc.html">Creating docs posts</a></li>
+                <li><a href="doc.html">Footer options</a></li>
+            </ul> -->
+            </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+<!-- load js -->
+
+{% block js %} {% endblock js %}

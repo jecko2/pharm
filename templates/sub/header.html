@@ -1,0 +1,115 @@
+{% load static %}
+
+<nav class="uk-navbar-container">
+  <div class="uk-container">
+    <div data-uk-navbar>
+      <div class="uk-navbar-left">
+        <a
+          class="uk-navbar-item uk-logo uk-visible@m"
+          href="{% url 'core:home_view' %}"
+          >Pharm</a
+        >
+        <a
+          class="uk-navbar-toggle uk-hidden@m"
+          href="#offcanvas-docs"
+          data-uk-toggle
+          ><span data-uk-navbar-toggle-icon></span>
+          <span class="uk-margin-small-left">Pharm</span></a
+        >
+        <ul class="uk-navbar-nav uk-visible@m">
+          <li
+            class="{% if request.resolver_match.view_name == 'core:home_view' %}uk-active{% endif %}"
+          >
+            <a href="{% url 'core:home_view' %}">Home</a>
+          </li>
+          <li
+            class="{% if request.resolver_match.view_name == 'core:academic_list' %}uk-active{% endif %}"
+          >
+            <a href="{% url 'core:academic_list' %}">Academics</a>
+          </li>
+          <li
+            class="{% if request.resolver_match.view_name == 'core:list_research_lab_reports' %} uk-active {% endif %}"
+          >
+            <a href="{% url 'core:list_research_lab_reports' %}"
+              >Report Papers</a
+            >
+          </li>
+          <li
+            class="{% if request.resolver_match.view_name == 'core:list_examination_papers' %} uk-active {% endif %}"
+          >
+            <a href="{% url 'core:list_examination_papers' %}">Exam Papers</a>
+          </li>
+        </ul>
+      </div>
+      <div class="uk-navbar-center uk-hidden@m">
+        <a
+          class="uk-navbar-item uk-logo {% if request.resolver_match.view_name == 'core:home_view' %}uk-active{% endif %}"
+          href="{% url 'core:home_view' %}"
+          >Pharm</a
+        >
+      </div>
+      <div class="uk-navbar-right">
+        <div>
+          <a
+            id="search-navbar-toggle"
+            class="uk-navbar-toggle"
+            data-uk-search-icon
+            href="#"
+          ></a>
+          <div
+            class="uk-background-default uk-border-rounded"
+            data-uk-drop="mode: click; pos: left-center; offset: 0"
+          >
+            <form
+              class="uk-search uk-search-navbar uk-width-1-1"
+              action="{% url 'core:search_list_view' %}"
+              method="get"
+            >
+              <input
+                id="search-navbar"
+                class="uk-search-input"
+                type="search"
+                placeholder="Search reports and revision papers"
+                name="q"
+                data-maxitems="30"
+              />
+            </form>
+          </div>
+        </div>
+        <ul class="uk-navbar-nav uk-visible@m">
+          <li>
+            <div class="uk-navbar-item">
+              <a
+                class="uk-button uk-button-primary-outline"
+                href="{% url 'core:research_report_upload_view' %}"
+                >Upload Research Papers</a
+              >
+            </div>
+          </li>
+          <li>
+            <div class="uk-navbar-item">
+              <a
+                class="uk-button uk-button-primary-outline"
+                href="{% url 'core:exam_past_paper_upload_view' %}"
+                >Upload Exam Papers</a
+              >
+            </div>
+          </li>
+          <li>
+            <div class="uk-navbar-item">
+              <a
+                class="uk-button uk-button-success"
+                href="{% url 'contact:contact_view_form' %}"
+                >Contact</a
+              >
+            </div>
+          </li>
+        </ul>
+        <a class="uk-navbar-toggle uk-hidden@m" href="#offcanvas" data-uk-toggle
+          ><span data-uk-navbar-toggle-icon></span>
+          <span class="uk-margin-small-left">Menu</span></a
+        >
+      </div>
+    </div>
+  </div>
+</nav>

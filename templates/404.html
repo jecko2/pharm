@@ -1,0 +1,58 @@
+{% extends parent_template|default:"base.html" %}
+
+<!-- load static -->
+
+{% load static %}
+
+<!-- load title -->
+
+{% block title %} {{ block.super }} {% endblock title %}
+
+<!-- load css -->
+
+{% block css %}
+
+<style>
+  h5 {
+    font-size: 100px;
+    color: crimson;
+    font-weight: 600;
+    opacity: 0.4;
+  }
+  .uk-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+  }
+</style>
+
+{% endblock css %}
+
+<!--  -->
+
+<!-- load body -->
+
+{% block content %}
+
+<div class="uk-section">
+  <div class="uk-container">
+    <div class="uk-grid-large" data-uk-grid>
+      <!-- main content -->
+      <div class="uk-width-1-1 uk-width-expand@m">
+        <article class="uk-article">
+          <h5>404</h5>
+          <h3>Page Not Found</h3>
+
+          <p>Sorry but the requested resource could not be found.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+<!-- load js -->
+
+{% block js %} {% endblock js %}

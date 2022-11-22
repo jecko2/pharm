@@ -1,0 +1,64 @@
+<h1 class="uk-article-title">{{unit.name}}</h1>
+
+<div class="article-content link-primary">
+  <p class="uk-text-lead uk-text-muted">
+    {{unit.body}}
+  </p>
+  <div class="language-bash highlighter-rouge">
+    <div class="highlight">
+      <pre class="highlight"><code>{{unit.quote}}</code></pre>
+    </div>
+  </div>
+  <p>{{unit.descr}}</p>
+  <h2 id="image-lightbox-example">Image Lightbox Example</h2>
+  <p>
+    Nunc porta malesuada porta. Etiam tristique vestibulum dolor at ultricies.
+    Proin hendrerit sapien sed erat fermentum, at commodo velit consectetur.
+  </p>
+  <figure data-uk-lightbox="animation: slide">
+    <a
+      class="uk-inline"
+      href="{% if unit.img %}{{unit.img.url}}{% endif %}"
+      data-caption="Image in lightbox"
+    >
+      <img src="{% if unit.img %}{{unit.img.url}}{% endif %}" />
+      <div class="uk-position-center">
+        <span data-uk-overlay-icon></span>
+      </div>
+    </a>
+    <figcaption data-uk-grid class="uk-flex-right uk-grid uk-grid-stack">
+      <span class="uk-width-auto uk-first-column">Image in lightbox</span>
+    </figcaption>
+  </figure>
+
+  <div class="share uk-text-center uk-margin-medium-top">
+    <a
+      class="uk-link-muted"
+      href="#"
+      rel="nofollow"
+      target="_blank"
+      title="Share on Twitter"
+      ><span data-uk-icon="icon: twitter; ratio: 1.2"></span
+    ></a>
+    <a
+      class="uk-link-muted uk-margin-small-left"
+      href="#"
+      rel="nofollow"
+      target="_blank"
+      title="Share on Facebook"
+      ><span data-uk-icon="icon: facebook; ratio: 1.2"></span
+    ></a>
+  </div>
+</div>
+<hr class="uk-margin-medium" />
+<div class="uk-margin-large-top paginate-post">
+  <div class="uk-child-width-expand@s uk-grid-large" data-uk-grid>
+    <div></div>
+    <div>
+      <h5>Basic theme setup</h5>
+      <div class="uk-text-right">
+        <a class="remove-underline hvr-forward" href="doc.html">Next →</a>
+      </div>
+    </div>
+  </div>
+</div>
